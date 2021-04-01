@@ -50,7 +50,7 @@ class UserController {
 
             const user = await UserModel.find({ email });
 
-            if (user) {
+            if (user.length != 0) {
                 return res.status(400).send({ message: "Email already exists" });
             }
 
