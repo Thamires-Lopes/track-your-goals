@@ -1,19 +1,16 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import App from './App';
 import Header from './components/header';
-import LoginPage from './pages/login';
-import SignUpPage from './pages/signUp';
+import { dropdownRoutes, headerRoutes } from './routeslist';
 
 const Routes = () => (
   <div>
-    <Header />
+    <Header headerRoutes={headerRoutes} dropdownRoutes={dropdownRoutes} />
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={App} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/signup" component={SignUpPage} />
-
+        {headerRoutes.map((route) => (
+          <Route exact path={route.path} component={route.component} />
+        ))}
       </Switch>
     </BrowserRouter>
   </div>
